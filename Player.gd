@@ -1,3 +1,5 @@
+#TODO fix body falling through the ground
+
 extends RigidBody3D
 
 var mouse_sensitivity := 0.001

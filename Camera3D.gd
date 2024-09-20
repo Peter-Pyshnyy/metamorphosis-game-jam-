@@ -38,8 +38,6 @@ func _process(delta):
 		gun_mesh.visible = true
 		gun_collision.disabled = false
 		
-		print(camera.fov)
-		
 		if floor(camera.fov - 0.3) == close_fov:
 			camera.position = close_pos
 			pitch.rotation = close_pitch

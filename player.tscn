@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://vyby26br5i3n"]
+[gd_scene load_steps=9 format=3 uid="uid://vyby26br5i3n"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_l1asf"]
+[ext_resource type="PackedScene" uid="uid://b5b077oga1ay4" path="res://laser.tscn" id="2_ot1oj"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="2_strcf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rneln"]
@@ -34,9 +35,12 @@ transform = Transform3D(0.531118, 0, 0, 0, 0.531118, 0, 0, 0, 0.531118, 0, -0.01
 visible = false
 mesh = SubResource("BoxMesh_3uwuq")
 
+[node name="RayCast3D" parent="gun_mesh" instance=ExtResource("2_ot1oj")]
+transform = Transform3D(1.88282, 0, 0, 0, -8.23007e-08, -1.88282, 0, 1.88282, -8.23007e-08, 0, 0.0330333, -0.526604)
+target_position = Vector3(0, -50, 0)
+
 [node name="gun_collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.531118, 0, 0, 0, 0.531118, 0, 0, 0, 0.531118, 0, -0.0175446, 0)
-visible = false
 shape = SubResource("ConvexPolygonShape3D_ooc2l")
 disabled = true
 
