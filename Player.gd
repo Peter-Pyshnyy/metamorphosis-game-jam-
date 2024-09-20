@@ -10,6 +10,7 @@ var is_on_ground := false
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 @onready var ground_ray := $GroundRayCast # Raycast to check if the player is grounded
+@onready var camera := $TwistPivot/PitchPivot/Camera3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,9 +55,9 @@ func _process(delta):
 
 
 func _unhandled_input(event : InputEvent):
+	if camera.is_zooming and !camera.is_zoomed:
+		return
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			twist_input = -event.relative.x * mouse_sensitivity
 			pitch_input = -event.relative.y * mouse_sensitivity
-
-
