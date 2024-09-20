@@ -39,12 +39,6 @@ mesh = SubResource("BoxMesh_3uwuq")
 transform = Transform3D(1.88282, 0, 0, 0, -8.23007e-08, -1.88282, 0, 1.88282, -8.23007e-08, 0, 0.0330333, -0.526604)
 target_position = Vector3(0, -50, 0)
 
-[node name="gun_collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.531118, 0, 0, 0, 0.531118, 0, 0, 0, 0.531118, 0, -0.0175446, 0)
-visible = false
-shape = SubResource("ConvexPolygonShape3D_ooc2l")
-disabled = true
-
 [node name="TwistPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
@@ -58,3 +52,14 @@ script = ExtResource("2_strcf")
 [node name="GroundRayCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.683314, 0)
 target_position = Vector3(0, -0.725, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.72529e-09, 0)
+
+[node name="gun_collision" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.531118, 0, 0, 0, 0.531118, 0, 0, 0, 0.531118, 0, -0.0175446, 0)
+visible = false
+shape = SubResource("ConvexPolygonShape3D_ooc2l")
+disabled = true
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
