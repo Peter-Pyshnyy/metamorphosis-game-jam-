@@ -1,5 +1,5 @@
 #TODO fix body falling through the ground
-
+#IDEAS small shots don't turn you back; hitting the wall turns you back
 extends RigidBody3D
 
 var mouse_sensitivity := 0.001
@@ -23,7 +23,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(linear_velocity.y)
 	var input := Vector3.ZERO
 	input.x = Input.get_axis("move_left", "move_right")
 	input.z = Input.get_axis("move_forward", "move_back")
@@ -48,6 +47,8 @@ func _process(delta):
 	
 	if Input.is_action_pressed("zoom"):
 		is_gun = true
+	else:
+		is_gun = false
 		
 	
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -57,8 +58,8 @@ func _process(delta):
 	pitch_pivot.rotate_x(pitch_input)
 	if !is_gun:
 		pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, 
-			deg_to_rad(-30), 
-			deg_to_rad(30)
+			deg_to_rad(-35), 
+			deg_to_rad(35)
 		)
 	twist_input = 0.0
 	pitch_input = 0.0

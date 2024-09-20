@@ -34,9 +34,11 @@ func _process(delta):
 		is_zooming = true
 		camera.fov = lerp(camera.fov, close_fov, delta * zoom_speed)
 		camera.position = camera.position.lerp(close_pos, delta * zoom_speed)
-		pitch.rotation = pitch.rotation.lerp(close_pitch, delta * zoom_speed)
-		twist.rotation = twist.rotation.lerp(close_twist, delta * zoom_speed)
+		pitch.rotation = pitch.rotation.lerp(pitch.rotation + close_pitch, delta * zoom_speed)
+		twist.rotation = twist.rotation.lerp(twist.rotation + close_twist, delta * zoom_speed)
 		Engine.time_scale = lerp(1., 0.7, 2)
+		
+		print(pitch.rotation)
 		
 		if floor(camera.fov - 0.3) == close_fov:
 			Engine.time_scale = 0.025
@@ -45,8 +47,8 @@ func _process(delta):
 			gun_mesh.visible = true
 			gun_collision.disabled = false
 			camera.position = close_pos
-			pitch.rotation = close_pitch
-			twist.rotation = close_twist
+			#pitch.rotation = close_pitch
+			#twist.rotation = close_twist
 			is_zoomed = true
 	
 	gun_mesh.rotation = twist.rotation + pitch.rotation - close_pitch - close_twist
@@ -57,7 +59,7 @@ func _process(delta):
 		camera.fov = lerp(camera.fov, default_fov, delta * zoom_speed)
 		camera.position = camera.position.lerp(default_pos, delta * zoom_speed)
 		pitch.rotation = pitch.rotation.lerp(default_pitch, delta * zoom_speed)
-		twist.rotation = twist.rotation.lerp(default_twist, delta * zoom_speed)
+		twist.rotation = twist.rotation.lerp(twist.rotation - close_twist, delta * zoom_speed)
 		
 		body_mesh.visible = true
 		body_collision.disabled = false
@@ -68,7 +70,7 @@ func _process(delta):
 			player.linear_velocity.y = -5
 			camera.position = default_pos
 			pitch.rotation = default_pitch
-			twist.rotation = default_twist
+			twist.rotation = twist.rotation - close_twist
 			is_zooming = false
 	
 	#used to prevent a bug where gun slowly falls down
