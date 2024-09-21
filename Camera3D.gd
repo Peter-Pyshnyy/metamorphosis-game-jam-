@@ -6,7 +6,6 @@ var default_pitch := Vector3(deg_to_rad(-10), 0, 0)
 var default_twist := Vector3(0, 0, 0)
 
 var is_zooming := false
-var is_zoomed := false
 var zoom_speed := 25.
 var close_fov := 27.
 var close_pos := Vector3(0.75, -0.70, 0)
@@ -33,7 +32,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("zoom") and !is_zoomed and !TO:
+	if Input.is_action_pressed("zoom") and !Global.is_gun and !TO:
 		is_zooming = true
 		camera.fov = lerp(camera.fov, close_fov, delta * zoom_speed)
 		spring_arm.position = spring_arm.position.lerp(close_pos, delta * zoom_speed)
@@ -59,7 +58,7 @@ func _process(delta):
 			spring_arm.position = close_pos
 			#pitch.rotation = close_pitch
 			#twist.rotation = close_twist
-			is_zoomed = true
+			Global.is_gun = true
 	
 	if !TO:
 		gun_mesh.rotation = twist.rotation + pitch.rotation - close_pitch - close_twist
@@ -71,10 +70,8 @@ func _process(delta):
 		gun_mesh.rotate_object_local(Vector3(1, 0, 0), 6*delta)
 		gun_collision.rotate_object_local(Vector3(1, 0, 0), 6*delta)
 	
-	
-	print(player.rotation)
 	#after shot
-	if player.shot and is_zoomed:
+	if player.shot and Global.is_gun:
 		if !TO:
 			TO = true
 			#timer start
@@ -94,17 +91,17 @@ func _process(delta):
 		TO = false
 		player.shot = false
 		unzoom(delta)
-		is_zoomed = false
+		Global.is_gun = false
 		player.position.y += 0.5 
 	elif !Input.is_action_pressed("zoom") and is_zooming:
 		unzoom(delta)
 		
 	
 	#prevent player from falling through the ground and rotating
-	if Input.is_action_just_released("zoom") and is_zoomed:
+	if Input.is_action_just_released("zoom") and Global.is_gun:
 		player.lock_rotation = true
 		player.rotation = Vector3.ZERO
-		is_zoomed = false
+		Global.is_gun = false
 		player.position.y += 0.5 
 	
 	#used to prevent a bug where gun slowly falls down

@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://q3oh4mfgdul3"]
+[gd_scene load_steps=15 format=3 uid="uid://q3oh4mfgdul3"]
 
 [ext_resource type="PackedScene" uid="uid://vyby26br5i3n" path="res://player.tscn" id="1_fh0n2"]
+[ext_resource type="PackedScene" uid="uid://bvdm24qsc763u" path="res://eye.tscn" id="2_5trdf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u7ri3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -95,3 +96,15 @@ skeleton = NodePath("../wall1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cube2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_1wjc0")
+
+[node name="Area3D" parent="." instance=ExtResource("2_5trdf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8646, 0.966649, 2.39027)
+
+[node name="Area3D2" parent="." instance=ExtResource("2_5trdf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.633013, 0.966649, 2.39027)
+
+[node name="Area3D3" parent="." instance=ExtResource("2_5trdf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61131, 0.966649, 2.39027)
+
+[node name="Area3D4" parent="." instance=ExtResource("2_5trdf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.19245, 0.966649, 2.39027)

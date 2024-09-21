@@ -1,9 +1,8 @@
-#TODO add spring hand
+#TODO add look back
 #IDEAS fixed N of shots per lvl
 extends RigidBody3D
 
 var mouse_sensitivity := 0.001
-var is_gun := false
 var shot := false
 var twist_input := 0.0
 var pitch_input := 0.0
@@ -21,6 +20,7 @@ var is_on_ground := false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Global.is_gun = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,7 +34,7 @@ func _process(delta):
 	
 	
 	#block movement when gun
-	if !is_gun:
+	if !Global.is_gun:
 		# If on ground, allow movement, else limit air controll
 		if is_on_ground:
 			# Calculate movement direction based on player rotation
@@ -50,14 +50,14 @@ func _process(delta):
 	if is_on_ground and Input.is_action_pressed("move_jump"):
 		linear_velocity.y = jump_strength  # Apply upward velocity
 	
-	if Input.is_action_pressed("zoom"):
-		is_gun = true
-		#lock_rotation = false
-		
+	if Global.is_gun:
 		if Input.is_action_just_pressed("shoot"):
 			shot = true
+			if(Global.is_on_target):
+				Global.target.eye_die()
 	elif !shot:
-		is_gun = false
+		pass
+		#Global.is_gun = false
 		#lock_rotation = true
 	
 	
@@ -66,7 +66,7 @@ func _process(delta):
 	
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
-	if !is_gun:
+	if !Global.is_gun:
 		pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, 
 			deg_to_rad(-35), 
 			deg_to_rad(35)
@@ -76,7 +76,7 @@ func _process(delta):
 
 
 func _unhandled_input(event : InputEvent):
-	if camera.is_zooming and !camera.is_zoomed:
+	if camera.is_zooming and !Global.is_gun:
 		return
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
