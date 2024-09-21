@@ -1,9 +1,10 @@
-#TODO fix body falling through the ground
-#IDEAS small shots don't turn you back; hitting the wall turns you back
+#TODO add spring hand
+#IDEAS fixed N of shots per lvl
 extends RigidBody3D
 
 var mouse_sensitivity := 0.001
 var is_gun := false
+var shot := false
 var twist_input := 0.0
 var pitch_input := 0.0
 var jump_strength = 10.0  # Lower jump strength to avoid flying away
@@ -14,6 +15,7 @@ var is_on_ground := false
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 @onready var ground_ray := $GroundRayCast # Raycast to check if the player is grounded
 @onready var camera := $TwistPivot/PitchPivot/Camera3D
+@onready var gun_mesh := $gun_mesh
 
 
 # Called when the node enters the scene tree for the first time.
@@ -30,15 +32,18 @@ func _process(delta):
 	# Check if the player is on the ground using raycast
 	is_on_ground = ground_ray.is_colliding()
 	
-	# If on ground, allow movement, else limit air controll
-	if is_on_ground:
-		# Calculate movement direction based on player rotation
-		var move_direction = twist_pivot.basis * input.normalized()* move_speed
-		linear_velocity.x = move_direction.x
-		linear_velocity.z = move_direction.z
-	else:
-		# controll while in air
-		apply_central_force(twist_pivot.basis * input * 150 * move_speed * delta)
+	
+	#block movement when gun
+	if !is_gun:
+		# If on ground, allow movement, else limit air controll
+		if is_on_ground:
+			# Calculate movement direction based on player rotation
+			var move_direction = twist_pivot.basis * input.normalized()* move_speed
+			linear_velocity.x = move_direction.x
+			linear_velocity.z = move_direction.z
+		else:
+			# controll while in air
+			apply_central_force(twist_pivot.basis * input * 150 * move_speed * delta)
 		
 		
 	# Handle jumping: only allow jump when on the ground
@@ -47,9 +52,14 @@ func _process(delta):
 	
 	if Input.is_action_pressed("zoom"):
 		is_gun = true
-	else:
-		is_gun = false
+		#lock_rotation = false
 		
+		if Input.is_action_just_pressed("shoot"):
+			shot = true
+	elif !shot:
+		is_gun = false
+		#lock_rotation = true
+	
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -72,4 +82,3 @@ func _unhandled_input(event : InputEvent):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			twist_input = -event.relative.x * mouse_sensitivity
 			pitch_input = -event.relative.y * mouse_sensitivity
-
