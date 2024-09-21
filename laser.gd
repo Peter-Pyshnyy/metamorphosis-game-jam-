@@ -15,10 +15,12 @@ func _process(delta):
 	var cast_point
 	force_raycast_update()
 	
+	
+	
 	if is_colliding():
-		if get_collider().name == "sb3d_eye":
+		if get_collider().is_class("Area3D"):
 			Global.is_on_target = true
-			Global.target = get_collider().get_parent().get_parent()
+			Global.target = get_collider()
 		else:
 			Global.is_on_target = false
 		

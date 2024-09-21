@@ -70,7 +70,6 @@ func _process(delta):
 		rot_speed = lerp(rot_speed, 0., 1.5*delta)
 		gun_mesh.rotate_object_local(Vector3(1, 0, 0), rot_speed*delta)
 		gun_collision.rotate_object_local(Vector3(1, 0, 0), rot_speed*delta)
-		print(rot_speed)
 		
 	
 	#after shot

@@ -62,8 +62,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 1.788
 current = true
 script = ExtResource("2_strcf")
 
-[node name="back_cam" type="Camera3D" parent="TwistPivot/PitchPivot/SpringArm3D/Camera3D"]
-transform = Transform3D(-1, -2.11495e-08, 8.48259e-08, 1.51808e-08, 0.913546, 0.406736, -8.60946e-08, 0.406736, -0.913546, 0, 0.588019, -5.1658)
+[node name="back_cam" type="Camera3D" parent="TwistPivot"]
+transform = Transform3D(-1, -2.11494e-08, 8.48259e-08, 1.59872e-14, 0.970296, 0.241921, -8.74227e-08, 0.241921, -0.970296, 0, 0.202999, -2.235)
 
 [node name="GroundRayCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.683314, 0)

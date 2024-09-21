@@ -17,6 +17,7 @@ emission = Color(1, 0, 0, 1)
 emission_energy_multiplier = 1.18
 
 [node name="RayCast3D" type="RayCast3D"]
+collide_with_areas = true
 script = ExtResource("1_1hwxh")
 
 [node name="beamMesh" type="MeshInstance3D" parent="."]
