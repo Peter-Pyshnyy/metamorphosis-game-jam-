@@ -14,7 +14,7 @@ var is_on_ground := false
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 @onready var ground_ray := $GroundRayCast # Raycast to check if the player is grounded
-@onready var camera := $TwistPivot/PitchPivot/Camera3D
+@onready var camera := $TwistPivot/PitchPivot/SpringArm3D/Camera3D
 @onready var gun_mesh := $gun_mesh
 
 
