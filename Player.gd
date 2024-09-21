@@ -32,6 +32,11 @@ func _process(delta):
 	# Check if the player is on the ground using raycast
 	is_on_ground = ground_ray.is_colliding()
 	
+	if Input.is_action_just_pressed("look_back"):
+		$TwistPivot/PitchPivot/SpringArm3D/Camera3D/back_cam.current = true
+	
+	if Input.is_action_just_released("look_back"):
+		$TwistPivot/PitchPivot/SpringArm3D/Camera3D.current = true
 	
 	#block movement when gun
 	if !Global.is_gun:

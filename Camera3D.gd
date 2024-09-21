@@ -12,6 +12,7 @@ var close_pos := Vector3(0.75, -0.70, 0)
 var close_pitch := Vector3(deg_to_rad(2.5), 0, 0)
 var close_twist := Vector3(0, deg_to_rad(5), 0)
 var TO = false
+var rot_speed := 16.
 
 @onready var camera := $"."
 @onready var spring_arm := $".."
@@ -44,9 +45,9 @@ func _process(delta):
 			Engine.time_scale = 0.05
 			player.lock_rotation = false
 			var rng = RandomNumberGenerator.new() 
-			player.angular_velocity = Vector3(rng.randf_range(-0.5,0.5),
-			rng.randf_range(-0.5,0.5),
-			rng.randf_range(-0.5,0.5)
+			player.angular_velocity = Vector3(rng.randf_range(-1,1),
+			rng.randf_range(-1,1),
+			rng.randf_range(-1,1)
 			)
 			player.physics_material_override.bounce = 0.5
 			player.mass = 0.1
@@ -66,17 +67,21 @@ func _process(delta):
 	
 	#spin gun after shot around X
 	if TO:
-		player.lock_rotation = false
-		gun_mesh.rotate_object_local(Vector3(1, 0, 0), 6*delta)
-		gun_collision.rotate_object_local(Vector3(1, 0, 0), 6*delta)
+		rot_speed = lerp(rot_speed, 0., 1.5*delta)
+		gun_mesh.rotate_object_local(Vector3(1, 0, 0), rot_speed*delta)
+		gun_collision.rotate_object_local(Vector3(1, 0, 0), rot_speed*delta)
+		print(rot_speed)
+		
 	
 	#after shot
 	if player.shot and Global.is_gun:
 		if !TO:
 			TO = true
 			#timer start
+			rot_speed = 16
+			player.lock_rotation = true
 			Engine.time_scale = 1
-			#player.lock_rotation = true
+			
 			player.apply_central_impulse(gun_mesh.transform.basis.z * 7)
 			camera.fov = default_fov
 			spring_arm.position = default_pos
@@ -86,10 +91,12 @@ func _process(delta):
 		else:
 			return
 		#timer end
-		player.lock_rotation = true
+		#player.lock_rotation = true
 		player.rotation = Vector3.ZERO
 		TO = false
 		player.shot = false
+		twist.rotation = player.rotation + default_twist
+		pitch.rotation = player.rotation + default_pitch
 		unzoom(delta)
 		Global.is_gun = false
 		player.position.y += 0.5 
@@ -102,7 +109,7 @@ func _process(delta):
 		player.lock_rotation = true
 		player.rotation = Vector3.ZERO
 		Global.is_gun = false
-		player.position.y += 0.5 
+		player.position.y += 1 
 	
 	#used to prevent a bug where gun slowly falls down
 	if player.linear_velocity.y == 0:
