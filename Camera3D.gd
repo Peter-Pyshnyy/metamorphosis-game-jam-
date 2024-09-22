@@ -81,7 +81,7 @@ func _process(delta):
 			player.lock_rotation = true
 			Engine.time_scale = 1
 			
-			player.apply_central_impulse(gun_mesh.transform.basis.z * 7)
+			player.apply_central_impulse(gun_mesh.transform.basis.z * 30)
 			camera.fov = default_fov
 			spring_arm.position = default_pos
 			twist.rotation = twist.rotation - close_twist

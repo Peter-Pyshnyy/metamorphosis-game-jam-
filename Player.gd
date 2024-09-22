@@ -77,14 +77,12 @@ func _process(delta):
 		)
 	
 	if Input.is_action_just_pressed("zoom"):
-		print("here")
 		animation.speed_scale = 3
 		animation.play("zoom")
 	elif Input.is_action_just_released("zoom"):
 		animation.speed_scale = -3
 		animation.play("zoom")
 	elif !camera.is_zooming:
-		print("BRO")
 		if Input.is_action_pressed("move_animation"):
 			animation.speed_scale = 1
 			animation.play("walk")
