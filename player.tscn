@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://vyby26br5i3n"]
+[gd_scene load_steps=15 format=3 uid="uid://vyby26br5i3n"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_l1asf"]
 [ext_resource type="PackedScene" uid="uid://b5b077oga1ay4" path="res://laser.tscn" id="2_ot1oj"]
@@ -7,9 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://pdttcfmx45hr" path="res://spider.tscn" id="5_0ct1q"]
 [ext_resource type="Script" path="res://animation_controller.gd" id="6_l57ay"]
 [ext_resource type="PackedScene" uid="uid://ddadgexutrqo0" path="res://hud.tscn" id="7_n7kk0"]
+[ext_resource type="AudioStream" uid="uid://dlc7crta1ttkh" path="res://368735__leszek_szary__shoot-6.mp3" id="8_5gjeb"]
+[ext_resource type="AudioStream" uid="uid://vroa5fon2u2" path="res://zoom.mp3" id="10_mw3w4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rneln"]
 friction = 0.0
+absorbent = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5putt"]
 albedo_color = Color(0.152941, 0.14902, 0.207843, 1)
@@ -22,7 +25,7 @@ points = PackedVector3Array(-1.02779, -1.05863, -1.01346, -1.14533, 1.5207, -5.8
 radius = 0.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ttn6a"]
-size = Vector3(2.78397, 4.79763, 1.49487)
+size = Vector3(2.8147, 4.79763, 1.49487)
 
 [node name="Player" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_rneln")
@@ -61,12 +64,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 1.788
 current = true
 script = ExtResource("2_strcf")
 
+[node name="sfx_shot" type="AudioStreamPlayer3D" parent="TwistPivot/PitchPivot/SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0.461368, -0.754796, -3.46038)
+stream = ExtResource("8_5gjeb")
+volume_db = -24.0
+
 [node name="back_cam" type="Camera3D" parent="TwistPivot"]
 transform = Transform3D(-1, -2.11494e-08, 8.48259e-08, 1.59872e-14, 0.970296, 0.241921, -8.74227e-08, 0.241921, -0.970296, 0, 0.202999, -2.235)
-
-[node name="GroundRayCast" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.683314, 0)
-target_position = Vector3(0, -0.725, 0)
 
 [node name="body_collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.0798638, -0.0189841, 0.0141174)
@@ -75,7 +79,19 @@ shape = SubResource("BoxShape3D_ttn6a")
 [node name="spider" parent="body_collision" instance=ExtResource("5_0ct1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177475, 0.0421868, -0.0313721)
 
+[node name="GroundRayCast" type="RayCast3D" parent="body_collision"]
+transform = Transform3D(2.22222, 0, 0, 0, 2.22222, 0, 0, 0, 2.22222, 0.753453, -1.47629, -0.031372)
+target_position = Vector3(0, -0.865, 0)
+
+[node name="GroundRayCast2" type="RayCast3D" parent="body_collision"]
+transform = Transform3D(2.22222, 0, 0, 0, 2.22222, 0, 0, 0, 2.22222, -0.684048, -0.983248, -0.031372)
+target_position = Vector3(0, -0.865, 0)
+
 [node name="animation_controller" type="Node" parent="."]
 script = ExtResource("6_l57ay")
 
 [node name="HUD" parent="." instance=ExtResource("7_n7kk0")]
+
+[node name="sfx_zoom" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_mw3w4")
+volume_db = -40.913

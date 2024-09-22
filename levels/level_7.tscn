@@ -155,7 +155,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.473582, 2, 7.19611)
 linear_damp = 3.0
 
 [node name="cube1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.126863, 0, 0, 0, 1, -9.35957, 1.08731, 2.65136)
+transform = Transform3D(1, 0, 0, 0, 0.4, 0, 0, 0, 1, -9.35957, 1.08731, 2.5757)
 material_override = SubResource("StandardMaterial3D_mgqwt")
 mesh = SubResource("BoxMesh_cbky6")
 skeleton = NodePath("../wall1")
@@ -166,7 +166,7 @@ skeleton = NodePath("../wall1")
 shape = SubResource("ConcavePolygonShape3D_loktw")
 
 [node name="cube2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.126863, 0, 0, 0, 1, -11.919, 2.24431, -0.135843)
+transform = Transform3D(1, 0, 0, 0, 0.4, 0, 0, 0, 1, -11.919, 2.24431, -0.135843)
 material_override = SubResource("StandardMaterial3D_mgqwt")
 mesh = SubResource("BoxMesh_cbky6")
 skeleton = NodePath("../wall1")
@@ -177,7 +177,7 @@ skeleton = NodePath("../wall1")
 shape = SubResource("ConcavePolygonShape3D_loktw")
 
 [node name="cube3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.126863, 0, 0, 0, 1, -8.96431, 3, -2.77752)
+transform = Transform3D(1, 0, 0, 0, 0.4, 0, 0, 0, 1, -8.96431, 3, -2.77752)
 material_override = SubResource("StandardMaterial3D_mgqwt")
 mesh = SubResource("BoxMesh_cbky6")
 skeleton = NodePath("../wall1")
@@ -188,7 +188,7 @@ skeleton = NodePath("../wall1")
 shape = SubResource("ConcavePolygonShape3D_loktw")
 
 [node name="cube4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.126863, 0, 0, 0, 1, -6.63182, 4, 0.256954)
+transform = Transform3D(1, 0, 0, 0, 0.4, 0, 0, 0, 1, -6.63182, 4, 0.256954)
 material_override = SubResource("StandardMaterial3D_mgqwt")
 mesh = SubResource("BoxMesh_cbky6")
 skeleton = NodePath("../wall1")
@@ -199,7 +199,7 @@ skeleton = NodePath("../wall1")
 shape = SubResource("ConcavePolygonShape3D_loktw")
 
 [node name="cube5" type="MeshInstance3D" parent="."]
-transform = Transform3D(9.57944, 0, 0, 0, 0.126863, 0, 0, 0, 0.499569, 1.46531, 3.85735, 0.256954)
+transform = Transform3D(9.57944, 0, 0, 0, 0.4, 0, 0, 0, 0.499569, 1.46531, 3.85735, 0.256954)
 material_override = SubResource("StandardMaterial3D_mgqwt")
 mesh = SubResource("BoxMesh_cbky6")
 skeleton = NodePath("../wall1")
