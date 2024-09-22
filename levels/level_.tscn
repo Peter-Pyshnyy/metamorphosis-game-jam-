@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://qsivwu7c5au4"]
+[gd_scene load_steps=15 format=3 uid="uid://dpfev1sritaax"]
 
-[ext_resource type="PackedScene" uid="uid://vyby26br5i3n" path="res://player.tscn" id="1_aelnq"]
-[ext_resource type="PackedScene" uid="uid://bvdm24qsc763u" path="res://eye.tscn" id="2_vrnbc"]
+[ext_resource type="PackedScene" uid="uid://vyby26br5i3n" path="res://player.tscn" id="1_sd78u"]
+[ext_resource type="PackedScene" uid="uid://bvdm24qsc763u" path="res://eye.tscn" id="2_gxgdw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u7ri3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -62,7 +62,7 @@ mesh = SubResource("PlaneMesh_uhm3e")
 shape = SubResource("ConcavePolygonShape3D_i1ifu")
 
 [node name="wall1" type="MeshInstance3D" parent="."]
-transform = Transform3D(25.4165, 0, 0, 0, 15.0802, 0, 0, 0, 1, -0.00231504, 1.75346, -13.7356)
+transform = Transform3D(25.4165, 0, 0, 0, 15.0802, 0, 0, 0, 1, -0.00231504, 1.83025, -13.7356)
 material_override = SubResource("StandardMaterial3D_vbrp4")
 mesh = SubResource("BoxMesh_g2drb")
 skeleton = NodePath("../Player")
@@ -84,7 +84,7 @@ skeleton = NodePath("../Player")
 shape = SubResource("ConcavePolygonShape3D_x0fp2")
 
 [node name="wall3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-25.4162, 0, -0.00476469, 0, 15.0802, 0, 0.121102, 0, -0.999989, -0.605247, 1.75346, 10.5766)
+transform = Transform3D(-25.4162, 0, -0.00476469, 0, 15.0802, 0, 0.121102, 0, -0.999989, -0.605247, 1.83025, 10.5766)
 material_override = SubResource("StandardMaterial3D_vbrp4")
 mesh = SubResource("BoxMesh_g2drb")
 skeleton = NodePath("../Player")
@@ -105,12 +105,12 @@ skeleton = NodePath("../Player")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wall4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_x0fp2")
 
-[node name="Player" parent="." instance=ExtResource("1_aelnq")]
+[node name="Player" parent="." instance=ExtResource("1_sd78u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.473582, 2, 7.19611)
 linear_damp = 3.0
 
 [node name="cube1" type="MeshInstance3D" parent="."]
-transform = Transform3D(26.9342, 0, 0, 0, 1.94923, 0, 0, 0, 1, -0.428828, -0.0449769, 2.65136)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.428828, 1.08731, 2.65136)
 material_override = SubResource("StandardMaterial3D_mgqwt")
 mesh = SubResource("BoxMesh_cbky6")
 skeleton = NodePath("../wall1")
@@ -120,5 +120,5 @@ skeleton = NodePath("../wall1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cube1/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_loktw")
 
-[node name="Area3D" parent="." instance=ExtResource("2_vrnbc")]
+[node name="Area3D" parent="." instance=ExtResource("2_gxgdw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.116343, 0.966649, -1.53476)
