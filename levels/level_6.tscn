@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://vyby26br5i3n" path="res://player.tscn" id="1_o6yq2"]
 [ext_resource type="PackedScene" uid="uid://bvdm24qsc763u" path="res://eye.tscn" id="2_h5vn1"]
-[ext_resource type="Texture2D" uid="uid://dap488xlo7syx" path="res://levels/lvl6.png" id="3_xi8lb"]
+[ext_resource type="Texture2D" uid="uid://bq1jfvuw6yf5f" path="res://levels/lvl6.png" id="3_xi8lb"]
 [ext_resource type="PackedScene" uid="uid://dnjuqvyhigpri" path="res://level_controller.tscn" id="4_ujtni"]
-[ext_resource type="Texture2D" uid="uid://cl2bl3mr5o5aa" path="res://lvl4.png" id="5_ofb01"]
+[ext_resource type="Texture2D" uid="uid://cl2bl3mr5o5aa" path="res://levels/lvl4.png" id="5_ofb01"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u7ri3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

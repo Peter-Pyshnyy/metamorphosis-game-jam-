@@ -81,7 +81,7 @@ func _process(delta):
 		SceneTransition.reload_current_scene()
 	
 	if Input.is_action_just_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().quit()
 	
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
@@ -131,3 +131,9 @@ func show_restart():
 
 func _on_area_3d_emit_orb_dead():
 	HUD.get_child(0).get_child(0).get_child(1).text = str(Global.orbs_left)
+
+
+func _on_area_3d_emit_the_end():
+	get_child(5).visible = false
+	$"../the_end".visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

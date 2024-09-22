@@ -1,0 +1,186 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwqnrguru62o"]
+
+[ext_resource type="FontFile" uid="uid://cw4dwrt4vskgd" path="res://SpaceGrotesk-VariableFont_wght.ttf" id="1_3abbr"]
+[ext_resource type="Script" path="res://Button_end.gd" id="2_jk33e"]
+[ext_resource type="Texture2D" uid="uid://c4nsan0fsyew7" path="res://Tomash/Tomash1.jpg" id="3_iartt"]
+[ext_resource type="Texture2D" uid="uid://b3sig4k0qe3jb" path="res://Tomash/Tomash2.jpg" id="4_p1gfj"]
+[ext_resource type="Texture2D" uid="uid://br8tbbm32lrha" path="res://Tomash/Tomash3.jpg" id="5_32awr"]
+[ext_resource type="Texture2D" uid="uid://oq6oaygqfuq7" path="res://Tomash/Tomash4.jpg" id="6_nfg3t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rfg0j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ho1mt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ih1pb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ptmhb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pe8tu"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016
+anchor_top = 0.036
+anchor_right = 0.529
+anchor_bottom = 0.133
+offset_left = 0.279999
+offset_top = 0.119999
+offset_right = -0.680054
+offset_bottom = 0.360001
+theme_override_fonts/font = ExtResource("1_3abbr")
+theme_override_font_sizes/font_size = 76
+text = "Дякую, що пройшли мою гру!"
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.484
+anchor_top = 0.206
+anchor_right = 0.993
+anchor_bottom = 0.473
+offset_left = -0.280029
+offset_top = 0.519989
+offset_right = -0.560059
+offset_bottom = 0.159973
+theme_override_fonts/font = ExtResource("1_3abbr")
+theme_override_font_sizes/font_size = 51
+text = "Велика подяка Ігроварам за організацію 
+цього джему.
+(і за такі потрібні додаткові 2 години в кінці)
+
+"
+
+[node name="Label3" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.472
+anchor_right = 0.808
+anchor_bottom = 0.55
+offset_left = -0.600006
+offset_top = 0.23996
+offset_right = -106.36
+theme_override_fonts/font = ExtResource("1_3abbr")
+theme_override_font_sizes/font_size = 55
+text = "А ще моїй дівчині, яка не давала мені загнутися в ці 3 дні <3
+"
+
+[node name="Label4" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023
+anchor_top = 0.642
+anchor_right = 0.942
+anchor_bottom = 0.914
+offset_left = -0.160004
+offset_top = -0.360046
+offset_right = 0.359985
+offset_bottom = -0.120056
+theme_override_fonts/font = ExtResource("1_3abbr")
+theme_override_font_sizes/font_size = 41
+text = "Кому я точно не вдячний, так це моєму коту Томашу, який постійно займався фігнею, хавав квіти, 
+лазив до проводів, намагався перекричати немовля сусідів і срав так, шо американці назвали б це 
+ескалацією.  
+Але він все одно дуже милий, ось вам декілька фоток і пока."
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 1169.0
+offset_top = 843.0
+offset_right = 1406.0
+offset_bottom = 948.0
+theme_override_colors/font_color = Color(0.92572, 0.801975, 0.550781, 1)
+theme_override_font_sizes/font_size = 71
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rfg0j")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ho1mt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ih1pb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ptmhb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pe8tu")
+text = "ТИЦЬ"
+script = ExtResource("2_jk33e")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.012
+anchor_top = 0.016
+anchor_right = 0.399
+anchor_bottom = 0.402
+offset_left = 0.959999
+offset_top = -0.280001
+offset_right = 537.92
+offset_bottom = 302.84
+scale = Vector2(0.58, 0.58)
+texture = ExtResource("3_iartt")
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.743
+anchor_top = -0.17
+anchor_right = 1.0
+anchor_bottom = 0.665
+offset_left = -0.560059
+offset_top = -0.399994
+offset_right = 226.0
+offset_bottom = 377.8
+scale = Vector2(0.705, 0.705)
+texture = ExtResource("4_p1gfj")
+
+[node name="TextureRect3" type="TextureRect" parent="Control"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.387
+anchor_top = 0.099
+anchor_right = 0.757
+anchor_bottom = 0.97
+offset_left = 0.959961
+offset_top = 0.0799942
+offset_right = 254.56
+offset_bottom = 339.4
+scale = Vector2(0.735, 0.735)
+texture = ExtResource("5_32awr")
+
+[node name="TextureRect4" type="TextureRect" parent="Control"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.281
+anchor_right = 0.321
+anchor_bottom = 0.98
+offset_top = -0.480011
+offset_right = 395.68
+offset_bottom = 524.6
+scale = Vector2(0.59, 0.59)
+texture = ExtResource("6_nfg3t")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.152941, 0.14902, 0.207843, 0.792157)
+
+[connection signal="button_down" from="Control/Button" to="Control/Button" method="_on_button_down"]

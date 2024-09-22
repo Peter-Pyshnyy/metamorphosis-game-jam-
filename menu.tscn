@@ -1,4 +1,17 @@
-[gd_scene format=3 uid="uid://c6d63ualcv8lf"]
+[gd_scene load_steps=8 format=3 uid="uid://c6d63ualcv8lf"]
+
+[ext_resource type="FontFile" uid="uid://cw4dwrt4vskgd" path="res://SpaceGrotesk-VariableFont_wght.ttf" id="1_70vti"]
+[ext_resource type="Script" path="res://Button.gd" id="2_ijyv3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xmplk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k7p25"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ldeh1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pei6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fqxi3"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -11,26 +24,79 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Panel" type="Panel" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.391
-anchor_top = 0.279
-anchor_right = 0.598
-anchor_bottom = 0.427
-offset_left = 0.567963
-offset_top = 0.207993
-offset_right = 0.103943
-offset_bottom = 0.303986
-mouse_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.176471, 0.211765, 1)
 
-[node name="Button" type="Button" parent="Control/Panel"]
+[node name="Button" type="Button" parent="Control"]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.303
-anchor_top = 0.25
-anchor_right = 0.702
-anchor_bottom = 0.719
-offset_left = -0.113998
-offset_right = -0.076004
-offset_bottom = -0.0240021
+anchor_left = 0.317
+anchor_top = 0.304
+anchor_right = 0.674
+anchor_bottom = 0.471
+offset_left = 0.359985
+offset_top = -0.320007
+offset_right = 0.919922
+offset_bottom = 0.319977
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.843137, 0.14902, 0.239216, 1)
+theme_override_colors/font_hover_color = Color(0.972008, 0.337912, 0.372002, 1)
+theme_override_fonts/font = ExtResource("1_70vti")
+theme_override_font_sizes/font_size = 141
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xmplk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k7p25")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ldeh1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7pei6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fqxi3")
+text = "PLAY ME"
+script = ExtResource("2_ijyv3")
+
+[node name="Button2" type="Button" parent="Control"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.317
+anchor_top = 0.304
+anchor_right = 0.674
+anchor_bottom = 0.471
+offset_left = 256.36
+offset_top = 414.68
+offset_right = -255.08
+offset_bottom = 335.32
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.087332, 0.123909, 0.151333, 1)
+theme_override_colors/font_pressed_color = Color(0.0862745, 0.12549, 0.152941, 1)
+theme_override_colors/font_hover_color = Color(0.0862745, 0.12549, 0.152941, 1)
+theme_override_fonts/font = ExtResource("1_70vti")
+theme_override_font_sizes/font_size = 71
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xmplk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k7p25")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ldeh1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7pei6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fqxi3")
+text = "quit"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 1028.0
+offset_right = 269.0
+offset_bottom = 1106.0
+theme_override_font_sizes/font_size = 24
+text = "В кінці гри буде фото мого кота"
+
+[connection signal="button_down" from="Control/Button" to="Control/Button" method="_on_button_down"]
+[connection signal="mouse_entered" from="Control/Button" to="Control/Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Button" to="Control/Button" method="_on_mouse_exited"]
+[connection signal="button_down" from="Control/Button2" to="Control/Button" method="_on_button_2_button_down"]
+[connection signal="mouse_entered" from="Control/Button2" to="Control/Button" method="_on_button_2_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Button2" to="Control/Button" method="_on_button_2_mouse_exited"]

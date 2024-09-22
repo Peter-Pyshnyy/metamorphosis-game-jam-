@@ -7,3 +7,4 @@ var bullets_on_level : int
 var orbs_on_level : int
 var bullets_left :  int
 var orbs_left := 1
+var current_lvl : int

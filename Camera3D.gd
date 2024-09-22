@@ -13,6 +13,7 @@ var close_pitch := Vector3(deg_to_rad(2.5), 0, 0)
 var close_twist := Vector3(0, deg_to_rad(5), 0)
 var TO = false
 var rot_speed := 16.
+var is_end : bool
 
 @onready var camera := $"."
 @onready var spring_arm := $".."
@@ -25,7 +26,6 @@ var rot_speed := 16.
 @onready var gun_mesh := $"../../../../gun_mesh"
 @onready var gun_collision := $"../../../../gun_collision"
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player.lock_rotation = true
@@ -37,36 +37,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	if Input.is_action_pressed("zoom") and !Global.is_gun and !TO and Global.bullets_left > 0:
-		is_zooming = true
-		camera.fov = lerp(camera.fov, close_fov, delta * zoom_speed)
-		spring_arm.position = spring_arm.position.lerp(close_pos, delta * zoom_speed)
-		pitch.rotation = pitch.rotation.lerp(pitch.rotation + close_pitch, delta * zoom_speed)
-		twist.rotation = twist.rotation.lerp(twist.rotation + close_twist, delta * zoom_speed)
-		Engine.time_scale = lerp(1., 0.7, 2)
-		
-		if floor(camera.fov - 0.3) == close_fov:
-			Engine.time_scale = 0.05
-			player.lock_rotation = false
-			var rng = RandomNumberGenerator.new() 
-			player.angular_velocity = Vector3(rng.randf_range(-0.25,0.25),
-			rng.randf_range(-0.25,0.25),
-			rng.randf_range(-0.25,0.25)
-			)
-			player.physics_material_override.bounce = 0.5
-			player.mass = 0.1
-			#player.lock_rotation = false
-			body_collision.disabled = true
-			spider.visible = false
-			gun_mesh.visible = true
-			gun_collision.disabled = false
-			spring_arm.position = close_pos
-			#pitch.rotation = close_pitch
-			#twist.rotation = close_twist
-			Global.is_gun = true
+		zoom_in(delta)
 	
-	if !TO:
+	if is_end:
+		zoom_in(delta)
+	
+	if !TO and !is_end:
 		gun_mesh.rotation = twist.rotation + pitch.rotation - close_pitch - close_twist
 		gun_collision.rotation = gun_mesh.rotation
 	
@@ -111,7 +88,7 @@ func _process(delta):
 		
 	
 	#prevent player from falling through the ground and rotating
-	if Input.is_action_just_released("zoom") and Global.is_gun:
+	if Input.is_action_just_released("zoom") and Global.is_gun and !is_end:
 		player.lock_rotation = true
 		player.rotation = Vector3.ZERO
 		Global.is_gun = false
@@ -120,6 +97,34 @@ func _process(delta):
 	#used to prevent a bug where gun slowly falls down
 	if player.linear_velocity.y == 0:
 		player.linear_velocity.y = -5
+
+func zoom_in(delta):
+	is_zooming = true
+	camera.fov = lerp(camera.fov, close_fov, delta * zoom_speed)
+	spring_arm.position = spring_arm.position.lerp(close_pos, delta * zoom_speed)
+	pitch.rotation = pitch.rotation.lerp(pitch.rotation + close_pitch, delta * zoom_speed)
+	twist.rotation = twist.rotation.lerp(twist.rotation + close_twist, delta * zoom_speed)
+	Engine.time_scale = lerp(1., 0.7, 2)
+	
+	if floor(camera.fov - 0.3) == close_fov:
+		Engine.time_scale = 0.05
+		player.lock_rotation = false
+		var rng = RandomNumberGenerator.new() 
+		player.angular_velocity = Vector3(rng.randf_range(-0.25,0.25),
+		rng.randf_range(-0.25,0.25),
+		rng.randf_range(-0.25,0.25)
+		)
+		player.physics_material_override.bounce = 0.5
+		player.mass = 0.1
+		#player.lock_rotation = false
+		body_collision.disabled = true
+		spider.visible = false
+		gun_mesh.visible = true
+		gun_collision.disabled = false
+		spring_arm.position = close_pos
+		#pitch.rotation = close_pitch
+		#twist.rotation = close_twist
+		Global.is_gun = true
 
 func unzoom(delta):
 	Engine.time_scale = 1
