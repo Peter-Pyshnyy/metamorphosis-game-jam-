@@ -32,7 +32,7 @@ func next_level():
 		Global.bullets_left = level_info[next_level_number][0]
 		Global.orbs_left = level_info[next_level_number][1]
 	else:
-		print("FINITP")
+		get_tree().quit()
 
 func get_level_bullets():
 	return level_info[current_lvl_number][0]

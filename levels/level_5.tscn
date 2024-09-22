@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmymn7u4dvjmi"]
+[gd_scene load_steps=17 format=3 uid="uid://dmymn7u4dvjmi"]
 
 [ext_resource type="PackedScene" uid="uid://vyby26br5i3n" path="res://player.tscn" id="1_jmuqw"]
 [ext_resource type="PackedScene" uid="uid://bvdm24qsc763u" path="res://eye.tscn" id="2_8f7hi"]
 [ext_resource type="PackedScene" uid="uid://dnjuqvyhigpri" path="res://level_controller.tscn" id="3_dynsx"]
+[ext_resource type="Texture2D" uid="uid://dqbqccwgq83m5" path="res://levels/lvl5.png" id="4_1tc2g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u7ri3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -155,30 +156,8 @@ shape = SubResource("ConcavePolygonShape3D_x0fp2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.473582, 2, 7.19611)
 linear_damp = 3.0
 
-[node name="cube1" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.39, 0, 0, 0, 0.100259, 0, 0, 0, 4.39, -0.169505, 0.800388, -8.70953)
-material_override = SubResource("StandardMaterial3D_mgqwt")
-mesh = SubResource("BoxMesh_cbky6")
-skeleton = NodePath("../wall1")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="cube1"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cube1/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_loktw")
-
-[node name="cube2" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.86, 0, 0, 0, 0.0859564, 0, 0, 0, 2.86, -0.169505, 1.50589, -8.70953)
-material_override = SubResource("StandardMaterial3D_mgqwt")
-mesh = SubResource("BoxMesh_cbky6")
-skeleton = NodePath("../wall1")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="cube2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cube2/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_loktw")
-
 [node name="cube3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.57, 0, 0, 0, 0.0725013, 0, 0, 0, 1.57, -0.169505, 2.24049, -8.70953)
+transform = Transform3D(1.57, 0, 0, 0, 0.633, 0, 0, 0, 1.57, -0.169505, 2.24049, -8.70953)
 material_override = SubResource("StandardMaterial3D_mgqwt")
 mesh = SubResource("BoxMesh_cbky6")
 skeleton = NodePath("../wall1")
@@ -189,13 +168,13 @@ skeleton = NodePath("../wall1")
 shape = SubResource("ConcavePolygonShape3D_loktw")
 
 [node name="Area3D" parent="." instance=ExtResource("2_8f7hi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 7.42556, -8.76029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 8.3852, -8.76029)
 
 [node name="Area3D2" parent="." instance=ExtResource("2_8f7hi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 8.51243, -8.76029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 9.47207, -8.76029)
 
 [node name="Area3D3" parent="." instance=ExtResource("2_8f7hi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 9.60454, -8.76029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 10.5642, -8.76029)
 
 [node name="cube15" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 4.85132, 0, 0, 0, 0.1, -0.184457, -0.256812, -8.71629)
@@ -209,6 +188,11 @@ skeleton = NodePath("../wall1")
 shape = SubResource("ConcavePolygonShape3D_cjxj8")
 
 [node name="level_controller" parent="." instance=ExtResource("3_dynsx")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.435, 0, 0, 0, -0.00203469, 0.434995, 0, -0.434995, -0.00203469, -0.222002, 2.5653, -8.56348)
+modulate = Color(1, 1, 1, 0.941176)
+texture = ExtResource("4_1tc2g")
 
 [connection signal="emit_orb_dead" from="Area3D" to="Player" method="_on_area_3d_emit_orb_dead"]
 [connection signal="emit_orbs_cleared" from="Area3D" to="level_controller" method="_on_area_3d_emit_orbs_cleared"]

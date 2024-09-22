@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://li7rbujhv7by"]
+[gd_scene load_steps=24 format=3 uid="uid://li7rbujhv7by"]
 
 [ext_resource type="PackedScene" uid="uid://vyby26br5i3n" path="res://player.tscn" id="1_o6yq2"]
 [ext_resource type="PackedScene" uid="uid://bvdm24qsc763u" path="res://eye.tscn" id="2_h5vn1"]
-[ext_resource type="Texture2D" uid="uid://cdy4uhcplvx5a" path="res://levels/eye_img.png" id="3_fqokp"]
+[ext_resource type="Texture2D" uid="uid://dap488xlo7syx" path="res://levels/lvl6.png" id="3_xi8lb"]
 [ext_resource type="PackedScene" uid="uid://dnjuqvyhigpri" path="res://level_controller.tscn" id="4_ujtni"]
+[ext_resource type="Texture2D" uid="uid://cl2bl3mr5o5aa" path="res://lvl4.png" id="5_ofb01"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u7ri3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -272,10 +273,10 @@ skeleton = NodePath("../wall1")
 shape = SubResource("ConcavePolygonShape3D_c0ht4")
 
 [node name="Area3D" parent="." instance=ExtResource("2_h5vn1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 3.55271e-15, 0, 1, -0.132269, 0.886549, -10.9435)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 3.55271e-15, 0, 1, 6.08778, 0.886549, -9.15784)
 
 [node name="cube1" type="MeshInstance3D" parent="Area3D"]
-transform = Transform3D(3.1011, 0, 0, 0, 0.214916, 0, 0, 0, 0.595207, 0.0327526, -0.566652, 14.1477)
+transform = Transform3D(3.101, 0, 0, 0, 0.44, 0, 0, 0, 0.595, -6.01869, -0.566652, 12.3511)
 material_override = SubResource("StandardMaterial3D_8rmwo")
 mesh = SubResource("BoxMesh_g8b74")
 skeleton = NodePath("../wall1")
@@ -286,8 +287,8 @@ skeleton = NodePath("../wall1")
 shape = SubResource("ConcavePolygonShape3D_0nfv1")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.06428, -3.61075)
-texture = ExtResource("3_fqokp")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.843805, -3.61075)
+texture = ExtResource("3_xi8lb")
 
 [node name="cube15" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 4.85132, 0, 0, 0, 0.1, -0.0578943, -2.16655, 2.9708)
@@ -312,6 +313,10 @@ skeleton = NodePath("../wall1")
 shape = SubResource("ConcavePolygonShape3D_fnbx3")
 
 [node name="level_controller" parent="." instance=ExtResource("4_ujtni")]
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(-0.104964, 0.00275957, 1.58546e-08, 0.00275957, 0.104964, 1.71063e-09, -1.58041e-08, 2.12672e-09, -0.105, 1.13162, 0.24186, 2.88899)
+texture = ExtResource("5_ofb01")
 
 [connection signal="emit_orb_dead" from="Area3D" to="Player" method="_on_area_3d_emit_orb_dead"]
 [connection signal="emit_orbs_cleared" from="Area3D" to="level_controller" method="_on_area_3d_emit_orbs_cleared"]

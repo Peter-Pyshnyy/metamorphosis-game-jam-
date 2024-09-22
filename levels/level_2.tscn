@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://btrtdjtvsbyoa"]
+[gd_scene load_steps=14 format=3 uid="uid://btrtdjtvsbyoa"]
 
 [ext_resource type="PackedScene" uid="uid://vyby26br5i3n" path="res://player.tscn" id="1_8a4uv"]
 [ext_resource type="PackedScene" uid="uid://bvdm24qsc763u" path="res://eye.tscn" id="2_p7ovd"]
 [ext_resource type="PackedScene" uid="uid://dnjuqvyhigpri" path="res://level_controller.tscn" id="3_ajstp"]
+[ext_resource type="Texture2D" uid="uid://c8mmw8u18fefn" path="res://levels/lvl2.png" id="4_1lvax"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u7ri3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -130,6 +131,11 @@ shape = SubResource("ConcavePolygonShape3D_loktw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148202, 3.67835, -4.87948)
 
 [node name="level_controller" parent="." instance=ExtResource("3_ajstp")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.558, -0.270252, 0, 0.270252, 0.558, 0, 0, 0, 0.62, -6.57638, 3.83392, -12.9896)
+modulate = Color(1, 1, 1, 0.12549)
+texture = ExtResource("4_1lvax")
 
 [connection signal="emit_orb_dead" from="Area3D" to="Player" method="_on_area_3d_emit_orb_dead"]
 [connection signal="emit_orbs_cleared" from="Area3D" to="level_controller" method="_on_area_3d_emit_orbs_cleared"]

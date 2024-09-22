@@ -12,12 +12,16 @@ var is_on_ground := false
 
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
-@onready var ground_ray := $GroundRayCast # Raycast to check if the player is grounded
+@onready var ground_ray := $body_collision/GroundRayCast # Raycast to check if the player is grounded
+@onready var ground_ray_2 = $body_collision/GroundRayCast2
 @onready var camera := $TwistPivot/PitchPivot/SpringArm3D/Camera3D
 @onready var gun_mesh := $gun_mesh
 @onready var animation := $body_collision/spider.get_child(1)
 @onready var HUD := $HUD
 @onready var LC := $"../level_controller"
+@onready var sfx_shot = $TwistPivot/PitchPivot/SpringArm3D/Camera3D/sfx_shot
+@onready var sfx_zoom = $sfx_zoom
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,7 +42,7 @@ func _process(delta):
 	input.z = Input.get_axis("move_forward", "move_back")
 	
 	# Check if the player is on the ground using raycast
-	is_on_ground = ground_ray.is_colliding()
+	is_on_ground = ground_ray.is_colliding() or ground_ray_2.is_colliding()
 	
 	if Input.is_action_just_pressed("look_back"):
 		$TwistPivot/back_cam.current = true
@@ -65,6 +69,8 @@ func _process(delta):
 	
 	if Global.is_gun:
 		if Input.is_action_just_pressed("shoot"):
+			sfx_shot.play()
+			sfx_zoom.stop()
 			shot = true
 			Global.bullets_left -= 1
 			HUD.get_child(0).get_child(0).get_child(0).text = str(Global.bullets_left)
@@ -87,10 +93,12 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("zoom") and Global.bullets_left > 0:
 		animation.speed_scale = 3
+		sfx_zoom.play()
 		animation.play("zoom")
 	elif Input.is_action_just_released("zoom") and Global.bullets_left > 0:
 		animation.speed_scale = -3
 		animation.play("zoom")
+		sfx_zoom.stop()
 	elif !camera.is_zooming:
 		if Input.is_action_pressed("move_animation"):
 			animation.speed_scale = 1
