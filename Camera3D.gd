@@ -45,9 +45,9 @@ func _process(delta):
 			Engine.time_scale = 0.05
 			player.lock_rotation = false
 			var rng = RandomNumberGenerator.new() 
-			player.angular_velocity = Vector3(rng.randf_range(-1,1),
-			rng.randf_range(-1,1),
-			rng.randf_range(-1,1)
+			player.angular_velocity = Vector3(rng.randf_range(-0.5,0.5),
+			rng.randf_range(-0.5,0.5),
+			rng.randf_range(-0.5,0.5)
 			)
 			player.physics_material_override.bounce = 0.5
 			player.mass = 0.1
