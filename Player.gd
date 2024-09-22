@@ -12,16 +12,12 @@ var is_on_ground := false
 
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
-@onready var ground_ray := $body_collision/GroundRayCast # Raycast to check if the player is grounded
-@onready var ground_ray2 = $body_collision/GroundRayCast2
+@onready var ground_ray := $GroundRayCast # Raycast to check if the player is grounded
 @onready var camera := $TwistPivot/PitchPivot/SpringArm3D/Camera3D
 @onready var gun_mesh := $gun_mesh
 @onready var animation := $body_collision/spider.get_child(1)
 @onready var HUD := $HUD
 @onready var LC := $"../level_controller"
-@onready var sfx_shot = $TwistPivot/PitchPivot/SpringArm3D/Camera3D/sfx_shot
-@onready var sfx_zoom = $sfx_zoom
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,13 +33,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#print(linear_velocity)
 	var input := Vector3.ZERO
 	input.x = Input.get_axis("move_left", "move_right")
 	input.z = Input.get_axis("move_forward", "move_back")
 	
 	# Check if the player is on the ground using raycast
-	is_on_ground = ground_ray.is_colliding() or ground_ray2.is_colliding()
+	is_on_ground = ground_ray.is_colliding()
 	
 	if Input.is_action_just_pressed("look_back"):
 		$TwistPivot/back_cam.current = true
@@ -68,15 +63,9 @@ func _process(delta):
 	if is_on_ground and Input.is_action_pressed("move_jump"):
 		linear_velocity.y = jump_strength  # Apply upward velocity
 	
-	print(is_on_ground)
-	if is_on_ground and !Input.is_action_pressed("move_animation"):
-		linear_velocity *= Vector3(0, 1, 0);
-	
 	if Global.is_gun:
-		#sfx_zoom.stop()
 		if Input.is_action_just_pressed("shoot"):
 			shot = true
-			sfx_shot.play()
 			Global.bullets_left -= 1
 			HUD.get_child(0).get_child(0).get_child(0).text = str(Global.bullets_left)
 			if(Global.is_on_target):
@@ -99,13 +88,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("zoom") and Global.bullets_left > 0:
 		animation.speed_scale = 3
 		animation.play("zoom")
-		sfx_zoom.play()
 	elif Input.is_action_just_released("zoom") and Global.bullets_left > 0:
 		animation.speed_scale = -3
 		animation.play("zoom")
-		sfx_zoom.stop()
 	elif !camera.is_zooming:
-		#if Input.is_action_just_pressed("move_animation"):
 		if Input.is_action_pressed("move_animation"):
 			animation.speed_scale = 1
 			animation.play("walk")

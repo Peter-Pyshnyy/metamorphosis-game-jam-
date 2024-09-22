@@ -40,7 +40,6 @@ mouse_filter = 2
 texture = ExtResource("1_nojj7")
 
 [node name="lbl_bullets" type="Label" parent="Panel/TextureRect"]
-layout_mode = 0
 offset_left = 488.235
 offset_top = 164.706
 offset_right = 529.235
@@ -54,7 +53,6 @@ theme_override_font_sizes/font_size = 60
 text = "0"
 
 [node name="lbl_orbs" type="Label" parent="Panel/TextureRect"]
-layout_mode = 0
 offset_left = 170.587
 offset_top = 164.705
 offset_right = 211.587
