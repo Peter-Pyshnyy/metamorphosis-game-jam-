@@ -20,7 +20,7 @@ var rot_speed := 16.
 @onready var twist := $"../../.."
 @onready var player := $"../../../.."
 
-@onready var body_mesh := $"../../../../body_mesh"
+@onready var spider := $"../../../../body_collision/spider"
 @onready var body_collision := $"../../../../body_collision"
 @onready var gun_mesh := $"../../../../gun_mesh"
 @onready var gun_collision := $"../../../../gun_collision"
@@ -53,7 +53,7 @@ func _process(delta):
 			player.mass = 0.1
 			#player.lock_rotation = false
 			body_collision.disabled = true
-			body_mesh.visible = false
+			spider.visible = false
 			gun_mesh.visible = true
 			gun_collision.disabled = false
 			spring_arm.position = close_pos
@@ -124,7 +124,7 @@ func unzoom(delta):
 	pitch.rotation = pitch.rotation.lerp(default_pitch, delta * zoom_speed)
 	twist.rotation = twist.rotation.lerp(twist.rotation - close_twist, delta * zoom_speed)
 	
-	body_mesh.visible = true
+	spider.visible = true
 	body_collision.disabled = false
 	gun_mesh.visible = false
 	gun_collision.disabled = true

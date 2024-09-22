@@ -6,8 +6,8 @@ var mouse_sensitivity := 0.001
 var shot := false
 var twist_input := 0.0
 var pitch_input := 0.0
-var jump_strength = 10.0  # Lower jump strength to avoid flying away
-var move_speed := 7.0  # Speed for player movement
+var jump_strength = 15.0  # Lower jump strength to avoid flying away
+var move_speed := 4.5  # Speed for player movement
 var is_on_ground := false
 
 @onready var twist_pivot := $TwistPivot
@@ -15,12 +15,15 @@ var is_on_ground := false
 @onready var ground_ray := $GroundRayCast # Raycast to check if the player is grounded
 @onready var camera := $TwistPivot/PitchPivot/SpringArm3D/Camera3D
 @onready var gun_mesh := $gun_mesh
+@onready var animation := $body_collision/spider.get_child(1)
 
+signal emit_is_moving(state : int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Global.is_gun = false
+	animation.speed_scale = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,10 +63,6 @@ func _process(delta):
 			shot = true
 			if(Global.is_on_target):
 				Global.target.eye_die()
-	elif !shot:
-		pass
-		#Global.is_gun = false
-		#lock_rotation = true
 	
 	
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -76,6 +75,28 @@ func _process(delta):
 			deg_to_rad(-35), 
 			deg_to_rad(35)
 		)
+	
+	if Input.is_action_just_pressed("zoom"):
+		print("here")
+		animation.speed_scale = 3
+		animation.play("zoom")
+	elif Input.is_action_just_released("zoom"):
+		animation.speed_scale = -3
+		animation.play("zoom")
+	elif !camera.is_zooming:
+		print("BRO")
+		if Input.is_action_pressed("move_animation"):
+			animation.speed_scale = 1
+			animation.play("walk")
+		elif Input.is_action_just_released("move_animation"):
+			animation.speed_scale = 0
+			#animation.play("idle")
+
+	var target_rotation = twist_pivot.rotation.y + deg_to_rad(-90)
+	var current_rotation = $body_collision.rotation.y
+
+	$body_collision.rotation.y = lerp_angle(current_rotation, target_rotation, delta * 15)
+	
 	twist_input = 0.0
 	pitch_input = 0.0
 

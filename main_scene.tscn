@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://q3oh4mfgdul3"]
+[gd_scene load_steps=16 format=3 uid="uid://q3oh4mfgdul3"]
 
 [ext_resource type="PackedScene" uid="uid://vyby26br5i3n" path="res://player.tscn" id="1_fh0n2"]
 [ext_resource type="PackedScene" uid="uid://bvdm24qsc763u" path="res://eye.tscn" id="2_5trdf"]
+[ext_resource type="PackedScene" uid="uid://pdttcfmx45hr" path="res://spider.tscn" id="3_efecb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u7ri3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -108,3 +109,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61131, 0.966649, 2.39027)
 
 [node name="Area3D4" parent="." instance=ExtResource("2_5trdf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.19245, 0.966649, 2.39027)
+
+[node name="spider" parent="." instance=ExtResource("3_efecb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83558, 2.71459, 6.08065)

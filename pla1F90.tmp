@@ -10,15 +10,15 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rneln"]
 friction = 0.0
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o7ng6"]
+points = PackedVector3Array(-1.03793, 1.0167, -0.676449, -0.213239, -2.50723, 0.747719, -0.962938, 1.69123, 0.972956, 0.386213, -2.35692, -0.601439, 1.51089, 2.21639, -0.601439, -0.737951, -2.50723, -0.301603, 0.911182, -2.58239, 0.0732429, 0.836187, 1.91623, 0.972956, 0.836187, 1.84107, -0.97649, -0.213239, -2.50723, -0.82647, -1.03793, 1.61654, -0.751459, 1.51089, 1.39154, 0.597904, -0.288234, 1.24123, 1.12298, 0.536204, -2.50723, 0.522894, -0.138243, 0.716536, -0.97649, 1.43589, 2.14123, 0.597904, 1.43589, 1.46623, -0.601439, -0.962938, 1.09138, 0.897945, -1.03793, 1.69123, 0.822935, 1.58589, 1.69123, 0.448089, 0.761191, 0.0415317, -0.82647, 0.911938, 1.63074, 0.946676, 0.985921, -2.05676, 0.297863, 1.3609, 2.21639, -0.601439, -0.567294, -2.26993, 0.274929, -0.213239, -1.98207, 0.822935, -0.213239, 1.76639, 1.12298, -0.979485, 1.46456, -0.786385, 1.58589, 2.14123, 0.448089, -0.251644, 1.56925, -0.908171, 0.386213, -2.58239, 0.522894, -0.213239, -1.00691, -0.90148)
+
 [sub_resource type="BoxMesh" id="BoxMesh_757db"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6g6ck"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4fsvc"]
 radius = 0.1
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ttn6a"]
-size = Vector3(2.78397, 4.79763, 1.49487)
 
 [node name="Player" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_rneln")
@@ -31,6 +31,10 @@ script = ExtResource("1_l1asf")
 transform = Transform3D(0.455, 0, 0, 0, 0.455, 0, 0, 0, 0.455, 0, 0, 0)
 visible = false
 mesh = ExtResource("2_eb0np")
+
+[node name="body_collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.455, 0, 0, 0, 0.455, 0, 0, 0, 0.455, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_o7ng6")
 
 [node name="gun_mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.531118, 0, 0, 0, 0.531118, 0, 0, 0, 0.531118, 0, 0.370198, 0)
@@ -69,12 +73,8 @@ transform = Transform3D(-1, -2.11494e-08, 8.48259e-08, 1.59872e-14, 0.970296, 0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.683314, 0)
 target_position = Vector3(0, -0.725, 0)
 
-[node name="body_collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.0798638, -0.0189841, 0.0141174)
-shape = SubResource("BoxShape3D_ttn6a")
-
-[node name="spider" parent="body_collision" instance=ExtResource("5_0ct1q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177475, 0.0421868, -0.0313721)
+[node name="spider" parent="." instance=ExtResource("5_0ct1q")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 
 [node name="animation_controller" type="Node" parent="."]
 script = ExtResource("6_l57ay")
