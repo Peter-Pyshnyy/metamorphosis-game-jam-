@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://bsbwtw833waug"]
+[gd_scene load_steps=25 format=3 uid="uid://bsbwtw833waug"]
 
 [ext_resource type="PackedScene" uid="uid://vyby26br5i3n" path="res://player.tscn" id="1_mwgeb"]
 [ext_resource type="PackedScene" uid="uid://bvdm24qsc763u" path="res://eye.tscn" id="2_5x4n8"]
 [ext_resource type="ArrayMesh" uid="uid://cnsi50fj1hqky" path="res://tube.obj" id="3_bovke"]
+[ext_resource type="PackedScene" uid="uid://dnjuqvyhigpri" path="res://level_controller.tscn" id="4_q8taq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u7ri3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -271,11 +272,11 @@ shape = SubResource("ConcavePolygonShape3D_82aqw")
 [node name="Area3D" parent="." instance=ExtResource("2_5x4n8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6439, 8.76508, 0.223627)
 
-[node name="Area3D2" parent="." instance=ExtResource("2_5x4n8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6439, 10.0098, 0.223627)
+[node name="Area3D3" parent="." instance=ExtResource("2_5x4n8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6439, 9.98245, 0.223627)
 
-[node name="Area3D5" parent="." instance=ExtResource("2_5x4n8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6439, 1.10146, 0.223627)
+[node name="Area3D4" parent="." instance=ExtResource("2_5x4n8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6439, 1.08681, 0.223627)
 
 [node name="cube11" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 4.85132, 0, 0, 0, 0.1, 3.06521, 1.36673, 0.243303)
@@ -331,3 +332,9 @@ skeleton = NodePath("../wall1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cube15/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_66lrq")
+
+[node name="level_controller" parent="." instance=ExtResource("4_q8taq")]
+
+[connection signal="emit_orbs_cleared" from="Area3D" to="level_controller" method="_on_area_3d_emit_orbs_cleared"]
+[connection signal="emit_orbs_cleared" from="Area3D3" to="level_controller" method="_on_area_3d_emit_orbs_cleared"]
+[connection signal="emit_orbs_cleared" from="Area3D4" to="level_controller" method="_on_area_3d_emit_orbs_cleared"]

@@ -17,8 +17,6 @@ var is_on_ground := false
 @onready var gun_mesh := $gun_mesh
 @onready var animation := $body_collision/spider.get_child(1)
 
-signal emit_is_moving(state : int)
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -63,6 +61,7 @@ func _process(delta):
 			shot = true
 			if(Global.is_on_target):
 				Global.target.eye_die()
+					
 	
 	
 	if Input.is_action_just_pressed("ui_cancel"):

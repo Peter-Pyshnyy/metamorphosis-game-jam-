@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmymn7u4dvjmi"]
+[gd_scene load_steps=16 format=3 uid="uid://dmymn7u4dvjmi"]
 
 [ext_resource type="PackedScene" uid="uid://vyby26br5i3n" path="res://player.tscn" id="1_jmuqw"]
 [ext_resource type="PackedScene" uid="uid://bvdm24qsc763u" path="res://eye.tscn" id="2_8f7hi"]
+[ext_resource type="PackedScene" uid="uid://dnjuqvyhigpri" path="res://level_controller.tscn" id="3_dynsx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u7ri3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -191,10 +192,10 @@ shape = SubResource("ConcavePolygonShape3D_loktw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 6.89857, -8.76029)
 
 [node name="Area3D2" parent="." instance=ExtResource("2_8f7hi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 7.97455, -8.76029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 7.98544, -8.76029)
 
 [node name="Area3D3" parent="." instance=ExtResource("2_8f7hi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 9.06085, -8.76029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 9.07755, -8.76029)
 
 [node name="cube15" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 4.85132, 0, 0, 0, 0.1, -0.184457, -0.256812, -8.71629)
@@ -206,3 +207,9 @@ skeleton = NodePath("../wall1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cube15/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_cjxj8")
+
+[node name="level_controller" parent="." instance=ExtResource("3_dynsx")]
+
+[connection signal="emit_orbs_cleared" from="Area3D" to="level_controller" method="_on_area_3d_emit_orbs_cleared"]
+[connection signal="emit_orbs_cleared" from="Area3D2" to="level_controller" method="_on_area_3d_emit_orbs_cleared"]
+[connection signal="emit_orbs_cleared" from="Area3D3" to="level_controller" method="_on_area_3d_emit_orbs_cleared"]

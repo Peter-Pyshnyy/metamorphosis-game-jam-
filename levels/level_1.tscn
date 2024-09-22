@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://qsivwu7c5au4"]
+[gd_scene load_steps=16 format=3 uid="uid://qsivwu7c5au4"]
 
 [ext_resource type="PackedScene" uid="uid://vyby26br5i3n" path="res://player.tscn" id="1_aelnq"]
 [ext_resource type="PackedScene" uid="uid://bvdm24qsc763u" path="res://eye.tscn" id="2_vrnbc"]
+[ext_resource type="PackedScene" uid="uid://dnjuqvyhigpri" path="res://level_controller.tscn" id="3_87tqn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u7ri3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -122,3 +123,7 @@ shape = SubResource("ConcavePolygonShape3D_loktw")
 
 [node name="Area3D" parent="." instance=ExtResource("2_vrnbc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.116343, 0.966649, -1.53476)
+
+[node name="level_controller" parent="." instance=ExtResource("3_87tqn")]
+
+[connection signal="emit_orbs_cleared" from="Area3D" to="level_controller" method="_on_area_3d_emit_orbs_cleared"]

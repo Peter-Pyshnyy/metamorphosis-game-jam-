@@ -76,5 +76,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177475, 0.0421868, -0.0313
 
 [node name="animation_controller" type="Node" parent="."]
 script = ExtResource("6_l57ay")
-
-[connection signal="emit_is_moving" from="." to="animation_controller" method="_on_player_emit_is_moving"]
