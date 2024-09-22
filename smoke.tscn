@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://cimod7d7qbsg6"]
+
+[ext_resource type="Texture2D" uid="uid://xe8wi23tcmt6" path="res://smoke_01.png" id="1_r3c8n"]
+[ext_resource type="ArrayMesh" uid="uid://chgldgklpn4r5" path="res://gun.obj" id="2_52en4"]
+[ext_resource type="PackedScene" uid="uid://b5b077oga1ay4" path="res://laser.tscn" id="3_47g4e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdqm8"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_r3c8n")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_fasxc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.49004, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_p780r"]
+curve = SubResource("Curve_fasxc")
+
+[sub_resource type="Curve" id="Curve_nlxwi"]
+_data = [Vector2(0, 0), 0.0, 1.3012, 0, 0, Vector2(0.191235, 0.707012), 0.832244, 0.832244, 0, 0, Vector2(1, 0.978297), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_st2y4"]
+curve = SubResource("Curve_nlxwi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vxv2k"]
+lifetime_randomness = 0.22
+angle_min = -357.0
+angle_max = 383.3
+direction = Vector3(0, 0, 0)
+spread = 24.281
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -1.0
+linear_accel_max = 1.0
+damping_min = 1.0
+damping_max = 2.5
+attractor_interaction_enabled = false
+scale_curve = SubResource("CurveTexture_st2y4")
+color = Color(1, 1, 1, 0.360784)
+alpha_curve = SubResource("CurveTexture_p780r")
+anim_offset_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_rncbm"]
+size = Vector2(1.5, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qul4c"]
+albedo_color = Color(0.152941, 0.14902, 0.207843, 1)
+metallic_specular = 0.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_sdqm8")
+lifetime = 0.18
+speed_scale = 0.59
+trail_lifetime = 0.86
+process_material = SubResource("ParticleProcessMaterial_vxv2k")
+draw_pass_1 = SubResource("QuadMesh_rncbm")
+
+[node name="gun_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.116, 0, 0, 0, 0.116, 0, 0, 0, 0.116, 0, -0.382555, 0.300673)
+material_override = SubResource("StandardMaterial3D_qul4c")
+mesh = ExtResource("2_52en4")
+
+[node name="RayCast3D" parent="gun_mesh" instance=ExtResource("3_47g4e")]
+transform = Transform3D(5.618, 0, 0, 0, -2.45571e-07, -5.618, 0, 5.618, -2.45571e-07, 0, 2.73061, -6.02264)
+target_position = Vector3(0, -100, 0)

@@ -1,4 +1,4 @@
-#TODO add look back
+#TODO bullet count, remaining orbs count
 #IDEAS fixed N of shots per lvl
 extends RigidBody3D
 

@@ -1,6 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://pdttcfmx45hr"]
+[gd_scene load_steps=10 format=3 uid="uid://pdttcfmx45hr"]
 
 [ext_resource type="PackedScene" uid="uid://dw52iaj300cjk" path="res://spider.glb" id="1_dvnd7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2drpt"]
+albedo_color = Color(0.152941, 0.14902, 0.207843, 1)
+metallic_specular = 0.0
+emission = Color(0.152941, 0.14902, 0.207843, 1)
+emission_energy_multiplier = 16.0
+ao_light_affect = 1.0
+backlight = Color(0.152941, 0.14902, 0.207843, 1)
 
 [sub_resource type="Animation" id="Animation_rfkaa"]
 resource_name = "ArmatureAction"
@@ -922,27 +930,29 @@ _data = {
 [node name="spider" instance=ExtResource("1_dvnd7")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/scale = Vector3(0.364719, 0.364719, 0.364719)
-bones/4/rotation = Quaternion(-0.501208, -0.602518, 0.238261, 0.573579)
-bones/5/rotation = Quaternion(-0.105132, 0.364487, 0.924582, 0.0352855)
-bones/7/rotation = Quaternion(0.158442, 0.111982, -0.244424, 0.950059)
-bones/8/rotation = Quaternion(0.584556, 0.367852, 0.528195, -0.493954)
-bones/10/rotation = Quaternion(-0.201085, -0.506847, 0.293691, 0.785122)
-bones/11/rotation = Quaternion(0.812429, -0.0669475, 0.171547, -0.553217)
-bones/13/rotation = Quaternion(-0.236716, 0.670778, 0.697938, 0.0830964)
-bones/14/rotation = Quaternion(0.170509, 0.149244, 0.925841, -0.302441)
-bones/15/scale = Vector3(0.364719, 0.364719, 0.364719)
-bones/18/rotation = Quaternion(-0.360407, 0.586605, -0.647744, 0.326234)
-bones/20/rotation = Quaternion(-0.563677, 0.0328402, 0.779884, 0.270132)
-bones/21/scale = Vector3(0.364719, 0.364719, 0.364719)
-bones/22/rotation = Quaternion(0.700981, 0.371593, 0.539563, 0.281809)
-bones/23/rotation = Quaternion(0.60567, -0.0261902, 0.747389, -0.271822)
-bones/24/scale = Vector3(0.364719, 0.364719, 0.364719)
-bones/25/rotation = Quaternion(0.191079, 0.819559, -0.359143, 0.40352)
-bones/26/rotation = Quaternion(0.858639, -0.0750773, -0.435886, -0.259047)
-bones/27/scale = Vector3(0.364719, 0.364719, 0.364719)
-bones/28/rotation = Quaternion(0.151804, 0.695839, -0.410197, 0.569651)
-bones/29/rotation = Quaternion(0.726161, -0.131404, -0.645434, -0.197075)
+bones/0/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.187324, -0.312026, 0.606178, 0.707176)
+bones/5/rotation = Quaternion(-0.125884, 0.0674025, 0.986709, -0.0775553)
+bones/7/rotation = Quaternion(0.385852, -0.485177, 0.0424675, 0.783529)
+bones/8/rotation = Quaternion(0.937851, 0.0124008, 0.299401, -0.175046)
+bones/10/rotation = Quaternion(0.0118221, 0.205012, 0.584695, 0.784832)
+bones/11/rotation = Quaternion(0.888678, 0.0573555, 0.443159, -0.10282)
+bones/13/rotation = Quaternion(-0.279605, 0.171133, 0.552459, 0.76637)
+bones/14/rotation = Quaternion(-0.0434358, 0.00184321, 0.986194, -0.159788)
+bones/15/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(-0.171035, -0.0635766, -0.356188, 0.916425)
+bones/20/rotation = Quaternion(-0.585763, -0.0169836, 0.763794, 0.270576)
+bones/22/rotation = Quaternion(0.340048, 0.0921405, 0.206796, 0.91275)
+bones/23/rotation = Quaternion(0.654171, -0.101905, 0.71699, -0.218177)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/rotation = Quaternion(0.32378, 0.0325983, -0.0682986, 0.943101)
+bones/26/rotation = Quaternion(0.87144, 0.0276631, -0.461194, -0.164702)
+bones/27/scale = Vector3(1, 1, 1)
+bones/28/rotation = Quaternion(0.219893, 0.0864695, -0.182618, 0.954369)
+bones/29/rotation = Quaternion(0.809187, 0.0999761, -0.564263, -0.129722)
+
+[node name="Icosphere" parent="Armature/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_2drpt")
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {

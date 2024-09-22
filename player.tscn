@@ -1,7 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://vyby26br5i3n"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_l1asf"]
-[ext_resource type="ArrayMesh" uid="uid://dgehylnwc02jf" path="res://spider.obj" id="2_eb0np"]
 [ext_resource type="PackedScene" uid="uid://b5b077oga1ay4" path="res://laser.tscn" id="2_ot1oj"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="2_strcf"]
 [ext_resource type="ArrayMesh" uid="uid://chgldgklpn4r5" path="res://gun.obj" id="3_m87mr"]
@@ -10,6 +9,10 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rneln"]
 friction = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5putt"]
+albedo_color = Color(0.152941, 0.14902, 0.207843, 1)
+metallic_specular = 0.0
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_00tf1"]
 points = PackedVector3Array(-1.02779, -1.05863, -1.01346, -1.14533, 1.5207, -5.82028, 1.08244, 0.935017, -5.93707, -0.984935, 2.9569, 0.945607, 0.988366, 2.87186, -5.64004, 1, -0.906763, 0.836578, -0.999321, -1, 1.11056, -0.984935, 2.9569, -5.78581, 0.988366, 2.87186, 0.799845, 1.08244, -1.05863, -1.01346, -1.02779, 0.935017, -5.93707, -1.14533, 1.5207, 1.2144, 1.08244, 1.5207, 1.33193, 0.0269989, 2.45867, -6.17212, -0.0898846, 1.5207, 1.33193, 0.0235514, -0.937584, 1, -0.0898846, 2.45867, -6.17212)
@@ -27,18 +30,15 @@ lock_rotation = true
 linear_damp = 85.161
 script = ExtResource("1_l1asf")
 
-[node name="body_mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.455, 0, 0, 0, 0.455, 0, 0, 0, 0.455, 0, 0, 0)
-visible = false
-mesh = ExtResource("2_eb0np")
-
 [node name="gun_mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.116, 0, 0, 0, 0.116, 0, 0, 0, 0.116, 0, 0.370198, -0.215)
+visible = false
+material_override = SubResource("StandardMaterial3D_5putt")
 mesh = ExtResource("3_m87mr")
 
 [node name="RayCast3D" parent="gun_mesh" instance=ExtResource("2_ot1oj")]
-transform = Transform3D(5.618, 0, 0, 0, -2.45571e-07, -5.618, 0, 5.618, -2.45571e-07, 0, 2.64126, -0.215)
-target_position = Vector3(0, -50, 0)
+transform = Transform3D(5.618, 0, 0, 0, -2.45571e-07, -5.618, 0, 5.618, -2.45571e-07, 0, 2.73061, -6.02264)
+target_position = Vector3(0, -100, 0)
 
 [node name="gun_collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.086, 0, 0, 0, 0.126137, 0, 0, 0, 0.0963233, 0, 0.37, -0.39)
