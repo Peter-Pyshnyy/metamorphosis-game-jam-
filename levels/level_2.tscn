@@ -90,7 +90,7 @@ skeleton = NodePath("../Player")
 shape = SubResource("ConcavePolygonShape3D_x0fp2")
 
 [node name="Player" parent="." instance=ExtResource("1_8a4uv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.201979, 4.34809, 2.09587)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.201979, 4.51744, 2.09587)
 linear_damp = 3.0
 
 [node name="cube1" type="MeshInstance3D" parent="."]

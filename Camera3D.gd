@@ -28,11 +28,17 @@ var rot_speed := 16.
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	player.lock_rotation = true
+	player.rotation = Vector3.ZERO
+	Global.is_gun = false
+	player.position.y += 1 
+	print("bro")
+	unzoom(0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if Input.is_action_pressed("zoom") and !Global.is_gun and !TO and Global.bullets_left > 0:
 		is_zooming = true
 		camera.fov = lerp(camera.fov, close_fov, delta * zoom_speed)
@@ -45,9 +51,9 @@ func _process(delta):
 			Engine.time_scale = 0.05
 			player.lock_rotation = false
 			var rng = RandomNumberGenerator.new() 
-			player.angular_velocity = Vector3(rng.randf_range(-0.5,0.5),
-			rng.randf_range(-0.5,0.5),
-			rng.randf_range(-0.5,0.5)
+			player.angular_velocity = Vector3(rng.randf_range(-0.25,0.25),
+			rng.randf_range(-0.25,0.25),
+			rng.randf_range(-0.25,0.25)
 			)
 			player.physics_material_override.bounce = 0.5
 			player.mass = 0.1
@@ -90,15 +96,15 @@ func _process(delta):
 		else:
 			return
 		#timer end
-		#player.lock_rotation = true
 		player.rotation = Vector3.ZERO
 		TO = false
 		player.shot = false
+		player.reset_animation()
 		twist.rotation = player.rotation + default_twist
 		pitch.rotation = player.rotation + default_pitch
 		unzoom(delta)
-		Global.is_gun = false
 		player.position.y += 0.5 
+		Global.is_gun = false
 	elif !Input.is_action_pressed("zoom") and is_zooming:
 		unzoom(delta)
 		
@@ -130,6 +136,8 @@ func unzoom(delta):
 	gun_collision.disabled = true
 	
 	if ceil(camera.fov) == default_fov:
+		#player.animation.speed_scale = -3
+		#player.animation.play("zoom")
 		player.linear_velocity.y = -5
 		spring_arm.position = default_pos
 		pitch.rotation = default_pitch

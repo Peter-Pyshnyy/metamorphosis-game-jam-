@@ -4,7 +4,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dshnl"]
 transparency = 1
-albedo_color = Color(0.0470588, 0.792157, 0.290196, 0.752941)
+albedo_color = Color(0.0470588, 0.792157, 0.290196, 1)
 metallic = 0.61
 metallic_specular = 0.63
 

@@ -79,7 +79,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("zoom") and Global.bullets_left > 0:
 		animation.speed_scale = 3
 		animation.play("zoom")
-	elif Input.is_action_just_released("zoom"):
+	elif Input.is_action_just_released("zoom") and Global.bullets_left > 0:
 		animation.speed_scale = -3
 		animation.play("zoom")
 	elif !camera.is_zooming:
@@ -98,6 +98,8 @@ func _process(delta):
 	twist_input = 0.0
 	pitch_input = 0.0
 
+func reset_animation():
+	animation.play("idle")
 
 func _unhandled_input(event : InputEvent):
 	if camera.is_zooming and !Global.is_gun:

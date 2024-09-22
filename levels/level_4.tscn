@@ -92,11 +92,11 @@ skeleton = NodePath("../Player")
 shape = SubResource("ConcavePolygonShape3D_x0fp2")
 
 [node name="Player" parent="." instance=ExtResource("1_73ghu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.201979, 4.34809, -2.21738)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.201979, 4.60491, -2.03724)
 linear_damp = 3.0
 
 [node name="cube1" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1.83961e-06, -1, 0, 42.0854, -4.37114e-08, 0, 0, 0, 1, -0.140057, -18.0744, -2.20045)
+transform = Transform3D(-1.58241e-06, -1, 0, -1.58241e-06, 1.91069e-15, -1, 36.2012, -4.37114e-08, -4.37114e-08, -0.0932839, 2.45882, 3.58486)
 material_override = SubResource("StandardMaterial3D_mgqwt")
 mesh = SubResource("BoxMesh_cbky6")
 skeleton = NodePath("../wall1")

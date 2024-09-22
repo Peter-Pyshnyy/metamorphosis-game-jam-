@@ -189,13 +189,13 @@ skeleton = NodePath("../wall1")
 shape = SubResource("ConcavePolygonShape3D_loktw")
 
 [node name="Area3D" parent="." instance=ExtResource("2_8f7hi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 6.89857, -8.76029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 7.42556, -8.76029)
 
 [node name="Area3D2" parent="." instance=ExtResource("2_8f7hi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 7.98544, -8.76029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 8.51243, -8.76029)
 
 [node name="Area3D3" parent="." instance=ExtResource("2_8f7hi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 9.07755, -8.76029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132269, 9.60454, -8.76029)
 
 [node name="cube15" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 4.85132, 0, 0, 0, 0.1, -0.184457, -0.256812, -8.71629)
