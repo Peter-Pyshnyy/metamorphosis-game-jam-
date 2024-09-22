@@ -59,6 +59,7 @@ func _process(delta):
 	if Global.is_gun:
 		if Input.is_action_just_pressed("shoot"):
 			shot = true
+			Global.bullets_left -= 1
 			if(Global.is_on_target):
 				Global.target.eye_die()
 					
@@ -75,7 +76,7 @@ func _process(delta):
 			deg_to_rad(35)
 		)
 	
-	if Input.is_action_just_pressed("zoom"):
+	if Input.is_action_just_pressed("zoom") and Global.bullets_left > 0:
 		animation.speed_scale = 3
 		animation.play("zoom")
 	elif Input.is_action_just_released("zoom"):

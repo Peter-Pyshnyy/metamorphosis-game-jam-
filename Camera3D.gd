@@ -33,7 +33,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("zoom") and !Global.is_gun and !TO:
+	if Input.is_action_pressed("zoom") and !Global.is_gun and !TO and Global.bullets_left > 0:
 		is_zooming = true
 		camera.fov = lerp(camera.fov, close_fov, delta * zoom_speed)
 		spring_arm.position = spring_arm.position.lerp(close_pos, delta * zoom_speed)
