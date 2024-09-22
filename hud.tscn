@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddadgexutrqo0"]
+
+[ext_resource type="Texture2D" uid="uid://bqc4515t2y6l1" path="res://HUD.png" id="1_nojj7"]
+[ext_resource type="FontFile" uid="uid://ixwi4i6h8r1x" path="res://Urbanist-VariableFont_wght.ttf" id="2_0aniu"]
+[ext_resource type="FontFile" uid="uid://bjkt00nb80y3b" path="res://Lato-Bold.ttf" id="3_urddp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g3cre"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1d03a"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -137.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_g3cre")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -138.0
+offset_top = 10.0001
+offset_right = 651.0
+offset_bottom = 708.0
+grow_horizontal = 0
+scale = Vector2(0.17, 0.17)
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("1_nojj7")
+
+[node name="lbl_bullets" type="Label" parent="Panel/TextureRect"]
+offset_left = 488.235
+offset_top = 164.706
+offset_right = 529.235
+offset_bottom = 249.706
+scale = Vector2(5.24, 5.24)
+theme_override_colors/font_color = Color(0.466667, 0.117647, 0.164706, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_0aniu")
+theme_override_font_sizes/font_size = 60
+text = "0"
+
+[node name="lbl_orbs" type="Label" parent="Panel/TextureRect"]
+offset_left = 170.587
+offset_top = 164.705
+offset_right = 211.587
+offset_bottom = 249.705
+scale = Vector2(5.24, 5.24)
+theme_override_colors/font_color = Color(0.275922, 0.616676, 0.423599, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_0aniu")
+theme_override_font_sizes/font_size = 60
+text = "1"
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -103.0
+offset_right = 394.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1d03a")
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.52, 0.1352, 0.186507, 1)
+theme_override_fonts/font = ExtResource("3_urddp")
+theme_override_font_sizes/font_size = 40
+text = "NO BULLETS
+R TO RESTART"
+horizontal_alignment = 1
+vertical_alignment = 1

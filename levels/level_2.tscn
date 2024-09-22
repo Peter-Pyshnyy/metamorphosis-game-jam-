@@ -131,4 +131,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148202, 3.67835, -4.87948)
 
 [node name="level_controller" parent="." instance=ExtResource("3_ajstp")]
 
+[connection signal="emit_orb_dead" from="Area3D" to="Player" method="_on_area_3d_emit_orb_dead"]
 [connection signal="emit_orbs_cleared" from="Area3D" to="level_controller" method="_on_area_3d_emit_orbs_cleared"]

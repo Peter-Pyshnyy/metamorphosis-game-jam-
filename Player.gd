@@ -16,12 +16,19 @@ var is_on_ground := false
 @onready var camera := $TwistPivot/PitchPivot/SpringArm3D/Camera3D
 @onready var gun_mesh := $gun_mesh
 @onready var animation := $body_collision/spider.get_child(1)
+@onready var HUD := $HUD
+@onready var LC := $"../level_controller"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Global.is_gun = false
 	animation.speed_scale = 0
+	await LC._ready()
+	HUD.get_child(0).get_child(0).get_child(0).text = str(Global.bullets_on_level)
+	HUD.get_child(0).get_child(0).get_child(1).text = str(Global.orbs_on_level)
+	Global.bullets_left = Global.bullets_on_level
+	Global.orbs_left = Global.orbs_on_level
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,9 +67,9 @@ func _process(delta):
 		if Input.is_action_just_pressed("shoot"):
 			shot = true
 			Global.bullets_left -= 1
+			HUD.get_child(0).get_child(0).get_child(0).text = str(Global.bullets_left)
 			if(Global.is_on_target):
 				Global.target.eye_die()
-					
 	
 	if Input.is_action_just_pressed("restart"):
 		SceneTransition.reload_current_scene()
@@ -110,3 +117,9 @@ func _unhandled_input(event : InputEvent):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			twist_input = -event.relative.x * mouse_sensitivity
 			pitch_input = -event.relative.y * mouse_sensitivity
+
+func show_restart():
+	HUD.get_child(1).visible = true;
+
+func _on_area_3d_emit_orb_dead():
+	HUD.get_child(0).get_child(0).get_child(1).text = str(Global.orbs_left)

@@ -32,7 +32,6 @@ func _ready():
 	player.rotation = Vector3.ZERO
 	Global.is_gun = false
 	player.position.y += 1 
-	print("bro")
 	unzoom(0)
 
 
@@ -100,6 +99,8 @@ func _process(delta):
 		TO = false
 		player.shot = false
 		player.reset_animation()
+		if Global.bullets_left == 0 and Global.orbs_left > 0:
+			player.show_restart()
 		twist.rotation = player.rotation + default_twist
 		pitch.rotation = player.rotation + default_pitch
 		unzoom(delta)

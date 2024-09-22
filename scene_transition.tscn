@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://s7ymgej4ro7g"]
+[gd_scene load_steps=7 format=3 uid="uid://s7ymgej4ro7g"]
 
 [ext_resource type="Script" path="res://scene_transition.gd" id="1_et1ly"]
 [ext_resource type="FontFile" uid="uid://cw4dwrt4vskgd" path="res://SpaceGrotesk-VariableFont_wght.ttf" id="2_2fk08"]
@@ -9,26 +9,26 @@ length = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RichTextLabel:theme_override_colors/default_color")
+tracks/0/path = NodePath("Control/Panel/Label:theme_override_colors/font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.905882, 0.960784, 0.972549, 0)]
+"values": [Color(0.921569, 0.964706, 0.976471, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:position")
+tracks/1/path = NodePath("ColorRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-1856, -319)]
+"values": [Color(0.0431373, 0.0431373, 0.0588235, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_2xnn8"]
@@ -37,26 +37,26 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RichTextLabel:theme_override_colors/default_color")
+tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1, 1.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.6, 1.1),
+"transitions": PackedFloat32Array(0.258817, 1),
 "update": 0,
-"values": [Color(0.905882, 0.960784, 0.972549, 0), Color(0.905882, 0.960784, 0.972549, 1)]
+"values": [Color(0.0431373, 0.0431373, 0.0588235, 0), Color(0.0431373, 0.0431373, 0.0588235, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:position")
+tracks/1/path = NodePath("Control/Panel/Label:theme_override_colors/font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 1),
-"transitions": PackedFloat32Array(0.183011, 1),
+"times": PackedFloat32Array(1.2, 1.7),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-1856, -319), Vector2(-618, 468)]
+"values": [Color(0.921569, 0.964706, 0.976471, 0), Color(0.921569, 0.964706, 0.976471, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tnt54"]
@@ -65,21 +65,11 @@ _data = {
 "dissolve": SubResource("Animation_2xnn8")
 }
 
-[node name="scene_transition" type="CanvasLayer"]
-script = ExtResource("1_et1ly")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lay1i"]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-z_index = 1
-offset_left = 482.0
-offset_top = 194.0
-offset_right = 723.0
-offset_bottom = 408.0
-size_flags_horizontal = 0
-mouse_filter = 2
-theme_override_colors/default_color = Color(0.905882, 0.960784, 0.972549, 0)
-theme_override_fonts/normal_font = ExtResource("2_2fk08")
-theme_override_font_sizes/normal_font_size = 150
-text = "1/7"
+[node name="scene_transition" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_et1ly")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -88,11 +78,52 @@ libraries = {
 speed_scale = 1.5
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1856.0
-offset_top = -319.0
-offset_right = -647.0
-offset_bottom = 523.0
-rotation = -0.785398
-scale = Vector2(1.775, 1.775)
+z_index = 1
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.000231314
+offset_right = 0.000244141
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-color = Color(0.04264, 0.0414, 0.06, 1)
+color = Color(0.0431373, 0.0431373, 0.0588235, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.187
+anchor_right = 0.695
+anchor_bottom = 0.707
+offset_left = -6.10352e-05
+offset_top = 0.0399933
+offset_right = 0.599854
+offset_bottom = 0.440002
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lay1i")
+
+[node name="Label" type="Label" parent="Control/Panel"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.921569, 0.964706, 0.976471, 0)
+theme_override_fonts/font = ExtResource("2_2fk08")
+theme_override_font_sizes/font_size = 300
+text = "1/7"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://vyby26br5i3n"]
+[gd_scene load_steps=13 format=3 uid="uid://vyby26br5i3n"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_l1asf"]
 [ext_resource type="PackedScene" uid="uid://b5b077oga1ay4" path="res://laser.tscn" id="2_ot1oj"]
@@ -6,6 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://chgldgklpn4r5" path="res://gun.obj" id="3_m87mr"]
 [ext_resource type="PackedScene" uid="uid://pdttcfmx45hr" path="res://spider.tscn" id="5_0ct1q"]
 [ext_resource type="Script" path="res://animation_controller.gd" id="6_l57ay"]
+[ext_resource type="PackedScene" uid="uid://ddadgexutrqo0" path="res://hud.tscn" id="7_n7kk0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rneln"]
 friction = 0.0
@@ -76,3 +77,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177475, 0.0421868, -0.0313
 
 [node name="animation_controller" type="Node" parent="."]
 script = ExtResource("6_l57ay")
+
+[node name="HUD" parent="." instance=ExtResource("7_n7kk0")]
