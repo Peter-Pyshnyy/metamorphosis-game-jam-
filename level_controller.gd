@@ -3,7 +3,7 @@ extends Node
 const FILE_BEGIN = "res://levels/level_"
 
 var level_info = {
-	1 : [1, 1],
+	1 : [0, 1],
 	2 : [1, 1],
 	3 : [2, 2],
 	4 : [1, 2],
@@ -18,7 +18,7 @@ func _ready():
 	Global.orbs_left = level_info[current_lvl][1]
 
 func restart_level():
-	pass
+	SceneTransition.reload_current_scene()
 
 func next_level():
 	var current_scene_file = get_tree().current_scene.scene_file_path
